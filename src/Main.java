@@ -22,14 +22,13 @@ public class Main
             System.out.println("4. Delete task");
             System.out.println("5. Quit");
             System.out.print("Choose one: ");
-            int menuChoice = scanner.nextInt();
-            scanner.nextLine();
+            String menuChoice = scanner.nextLine().trim();
             System.out.println();
 
             while (isRunning) {
 
-                if (menuChoice == 1) {
-                    System.out.println("Enter the task you want to add: ");
+                if (menuChoice.equals("1")) {
+                    System.out.print("Enter the task you want to add: ");
                     String task = scanner.nextLine().trim();
                     if (task.equals("exit")){
                         isRunning = false;
@@ -38,20 +37,30 @@ public class Main
                     taskTitles[taskCount] = task;
                     taskDone[taskCount] = false;
                     taskCount++;
+                    System.out.println("Task: \"" + task + "\" added!");
+                    System.out.println();
 
-                } else if (menuChoice == 2) {
-                    for (int i = 0; i < taskCount; i++) {
-                        System.out.println("ID: " + taskTitles[i]);
+                } else if (menuChoice.equals("2")) {
+                    for (int i = 0; i <= taskCount; i++) {
+                        System.out.println("ID: ");
                     }
-                } else if (menuChoice == 3) {
+
+                } else if (menuChoice.equals("3")) {
                     return;
-                } else if (menuChoice == 4) {
+
+                } else if (menuChoice.equals("4")) {
                     return;
-                } else {
+
+                } else if ( menuChoice.equals("5")){
                     System.out.println("Thank you for using my application!");
                     System.out.println("Bye!");
                     isRunning = false;
                     isQuitting = true;
+                    break;
+
+                } else {
+                    System.out.println("Please enter a number between 1 and 5!");
+                    System.out.println();
                     break;
                 }
             }
