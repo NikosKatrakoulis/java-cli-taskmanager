@@ -10,6 +10,7 @@ public class Main
         boolean [] taskDone = new boolean[10];
         int taskCount = 0;
         boolean isRunning = true;
+        boolean isQuitting = false;
 
         while (true) {
 
@@ -50,9 +51,12 @@ public class Main
                     System.out.println("Thank you for using my application!");
                     System.out.println("Bye!");
                     isRunning = false;
+                    isQuitting = true;
                     break;
                 }
             }
+            if (isQuitting)
+                break;
         }
     }
 }
