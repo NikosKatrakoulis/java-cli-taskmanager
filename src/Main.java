@@ -47,7 +47,10 @@ public class Main
                 } else if (menuChoice == 4) {
                     return;
                 } else {
-                    return;
+                    System.out.println("Thank you for using my application!");
+                    System.out.println("Bye!");
+                    isRunning = false;
+                    break;
                 }
             }
         }
