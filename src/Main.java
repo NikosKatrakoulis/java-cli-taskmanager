@@ -6,8 +6,8 @@ public class Main
     {
         Scanner scanner = new Scanner(System.in);
 
-        String [] taskTitles = new String[100];
-        boolean [] taskDone = new boolean[100];
+        String [] taskTitles = new String[10];
+        boolean [] taskDone = new boolean[10];
         int taskCount = 0;
 
         while (true) {
@@ -27,6 +27,12 @@ public class Main
 
 
             if (menuChoice == 1) {
+                if (taskCount == 10) {
+                    System.out.println("Task list is full!");
+                    System.out.println();
+                    continue;
+                }
+
                 System.out.print("Enter the task you want to add: ");
                 String task = scanner.nextLine().trim();
                 if (task.equals("exit")){
