@@ -6,8 +6,8 @@ public class Main
     {
         Scanner scanner = new Scanner(System.in);
 
-        String [] taskTitles = new String[10];
-        boolean [] taskDone = new boolean[10];
+        String [] taskTitles = new String[100];
+        boolean [] taskDone = new boolean[100];
         int taskCount = 0;
 
         while (true) {
@@ -63,6 +63,10 @@ public class Main
                     System.out.println("Invalid choice! Please enter the existing number of the task.");
                     System.out.println();
                     continue;
+                } else if (taskCount < 0) {
+                    System.out.println("Invalid choice! Please enter the existing number of the task.");
+                    System.out.println();
+                    continue;
                 } else {
                     taskDone[taskCompleted] = true;
                     System.out.println("ID[" + taskCompleted + "]: \"" + taskTitles[taskCompleted] + "\" ---> Done! (✓)");
@@ -70,7 +74,31 @@ public class Main
                 }
 
             } else if (menuChoice == 4) {
-                return;
+                System.out.print("Enter the task you want to delete: ");
+                String deletedTaskInput = scanner.nextLine().trim();
+                int deletedTask = Integer.parseInt(deletedTaskInput);
+
+                if (taskCount == 0) {
+                    System.out.println("Invalid choice! Please enter the existing number of the task.");
+                    System.out.println();
+                    continue;
+                } else if (deletedTask >= taskCount) {
+                    System.out.println("Invalid choice! Please enter the existing number of the task.");
+                    System.out.println();
+                    continue;
+                } else if (taskCount < 0) {
+                    System.out.println("Invalid choice! Please enter the existing number of the task.");
+                    System.out.println();
+                    continue;
+                } else {
+                    System.out.println("ID[" + deletedTask + "]: \"" + taskTitles[deletedTask] + "\" --- Deleted!");
+                    System.out.println();
+                    for (int i = deletedTask; i < taskCount; i++) {
+                        taskTitles[i] = taskTitles[i + 1];
+                        taskDone[i] = taskDone[i + 1];
+                    }
+                    taskCount--;
+                }
 
             } else if ( menuChoice == 5){
                 System.out.println("Thank you for using my application!");
