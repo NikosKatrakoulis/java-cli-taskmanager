@@ -39,23 +39,32 @@ public class Main
                 System.out.println();
 
             } else if (menuChoice == 2) {
-                for (int i = 0; i < taskCount; i++) {
-                    System.out.print("ID: " + i + " | " + taskTitles[i] + " | ");
-                    if (taskDone[i]) {
-                        System.out.println("✓");
-                    } else {
-                        System.out.println("✗");
+                if (taskCount == 0) {
+                    System.out.println("No tasks found!");
+                    System.out.println();
+                } else {
+                    for (int i = 0; i < taskCount; i++) {
+                        System.out.print("ID: " + i + " | " + taskTitles[i] + " | ");
+                        if (taskDone[i]) {
+                            System.out.println("✓");
+                        } else {
+                            System.out.println("✗");
+                        }
                     }
+                    System.out.println();
                 }
-                System.out.println();
 
             } else if (menuChoice == 3) {
                 System.out.print("Enter the task you completed: ");
-                String  taskInput = scanner.nextLine().trim();
+                String taskInput = scanner.nextLine().trim();
                 int taskCompleted = Integer.parseInt(taskInput);
                 System.out.println();
 
-                if (taskCount == 0) {
+                if (taskCompleted < 0) {
+                    System.out.println("Invalid choice! Please enter the existing number of the task.");
+                    System.out.println();
+                    continue;
+                } else if (taskCount == 0) {
                     System.out.println("Invalid choice! Please enter the existing number of the task.");
                     System.out.println();
                     continue;
@@ -63,10 +72,9 @@ public class Main
                     System.out.println("Invalid choice! Please enter the existing number of the task.");
                     System.out.println();
                     continue;
-                } else if (taskCount < 0) {
-                    System.out.println("Invalid choice! Please enter the existing number of the task.");
+                } else if (taskDone[taskCompleted]) {
+                    System.out.println("ID[" + taskCompleted + "]: \"" + taskTitles[taskCompleted] + "\" ---> Task is already completed!");
                     System.out.println();
-                    continue;
                 } else {
                     taskDone[taskCompleted] = true;
                     System.out.println("ID[" + taskCompleted + "]: \"" + taskTitles[taskCompleted] + "\" ---> Done! (✓)");
@@ -78,7 +86,11 @@ public class Main
                 String deletedTaskInput = scanner.nextLine().trim();
                 int deletedTask = Integer.parseInt(deletedTaskInput);
 
-                if (taskCount == 0) {
+                if (deletedTask < 0) {
+                    System.out.println("Invalid choice! Please enter the existing number of the task.");
+                    System.out.println();
+                    continue;
+                } else if (taskCount == 0) {
                     System.out.println("Invalid choice! Please enter the existing number of the task.");
                     System.out.println();
                     continue;
@@ -86,14 +98,11 @@ public class Main
                     System.out.println("Invalid choice! Please enter the existing number of the task.");
                     System.out.println();
                     continue;
-                } else if (taskCount < 0) {
-                    System.out.println("Invalid choice! Please enter the existing number of the task.");
-                    System.out.println();
-                    continue;
+
                 } else {
                     System.out.println("ID[" + deletedTask + "]: \"" + taskTitles[deletedTask] + "\" --- Deleted!");
                     System.out.println();
-                    for (int i = deletedTask; i < taskCount; i++) {
+                    for (int i = deletedTask; i < taskCount -1; i++) {
                         taskTitles[i] = taskTitles[i + 1];
                         taskDone[i] = taskDone[i + 1];
                     }
