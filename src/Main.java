@@ -8,9 +8,7 @@ public class Main
 
         String [] taskTitles = new String[10];
         boolean [] taskDone = new boolean[10];
-        int taskCount = 0;
-        boolean isRunning = true;
-        boolean isQuitting = false;
+        int taskCount = 1;
 
         while (true) {
 
@@ -22,50 +20,51 @@ public class Main
             System.out.println("4. Delete task");
             System.out.println("5. Quit");
             System.out.print("Choose one: ");
-            String menuChoice = scanner.nextLine().trim();
+            String menuInput = scanner.nextLine().trim();
+            int menuChoice = Integer.parseInt(menuInput);
             System.out.println();
 
-            while (isRunning) {
 
-                if (menuChoice.equals("1")) {
-                    System.out.print("Enter the task you want to add: ");
-                    String task = scanner.nextLine().trim();
-                    if (task.equals("exit")){
-                        isRunning = false;
-                        break;
-                    }
-                    taskTitles[taskCount] = task;
-                    taskDone[taskCount] = false;
-                    taskCount++;
-                    System.out.println("Task: \"" + task + "\" added!");
-                    System.out.println();
 
-                } else if (menuChoice.equals("2")) {
-                    for (int i = 0; i <= taskCount; i++) {
-                        System.out.println("ID: ");
-                    }
-
-                } else if (menuChoice.equals("3")) {
-                    return;
-
-                } else if (menuChoice.equals("4")) {
-                    return;
-
-                } else if ( menuChoice.equals("5")){
-                    System.out.println("Thank you for using my application!");
-                    System.out.println("Bye!");
-                    isRunning = false;
-                    isQuitting = true;
-                    break;
-
-                } else {
-                    System.out.println("Please enter a number between 1 and 5!");
-                    System.out.println();
+            if (menuChoice == 1) {
+                System.out.print("Enter the task you want to add: ");
+                String task = scanner.nextLine().trim();
+                if (task.equals("exit")){
                     break;
                 }
-            }
-            if (isQuitting)
+                taskTitles[taskCount] = task;
+                taskDone[taskCount] = false;
+                taskCount++;
+                System.out.println("Task: \"" + task + "\" added!");
+                System.out.println();
+
+            } else if (menuChoice == 2) {
+                for (int i = 1; i < taskCount; i++) {
+                    System.out.print("ID: " + i + " | " + taskTitles[i] + " | ");
+                    if (taskDone[i]) {
+                        System.out.println("✓");
+                    } else {
+                        System.out.println("✗");
+                    }
+                }
+                System.out.println();
+
+            } else if (menuChoice == 3) {
+
+
+            } else if (menuChoice == 4) {
+                return;
+
+            } else if ( menuChoice == 5){
+                System.out.println("Thank you for using my application!");
+                System.out.println("Bye!");
                 break;
+
+            } else {
+                System.out.println("Please enter a number between 1 and 5!");
+                System.out.println();
+                break;
+            }
         }
     }
 }
