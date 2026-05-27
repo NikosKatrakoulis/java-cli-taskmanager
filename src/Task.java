@@ -29,6 +29,6 @@ public class Task {
     @Override
     public String toString() {
         return String.format("ID: [ %d ] | Task: [ %-10s ] | State: [ %b ]",
-                id, title, isDone());
+                id, title, isDone() ? "✓" : "✗");
     }
 }
