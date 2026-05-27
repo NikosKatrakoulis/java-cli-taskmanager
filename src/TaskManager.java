@@ -37,15 +37,6 @@ public class TaskManager {
         }
     }
 
-    private void increaseSize() {
-        Task[] temp = new Task[tasks.length * 2];
-
-        for (int task = 0; task < tasks.length; task++) {
-            temp[task] = tasks[task];
-        }
-        tasks = temp;
-    }
-
     public void completeTask(int id) {
 
         boolean found = false;
@@ -65,5 +56,14 @@ public class TaskManager {
             }
 
         }
+    }
+
+    private void increaseSize() {
+        Task[] temp = new Task[tasks.length * 2];
+
+        for (int task = 0; task < tasks.length; task++) {
+            temp[task] = tasks[task];
+        }
+        tasks = temp;
     }
 }
