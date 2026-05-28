@@ -58,6 +58,30 @@ public class TaskManager {
         }
     }
 
+    public void deleteTask(int id) {
+
+        boolean found = false;
+
+        if (taskCount == 0) {
+            System.out.println("Invalid choice! Please enter the existing number of the task.");
+        } else {
+            for (int task = 0; task < taskCount; task++) {
+                if (tasks[task].getId() == id) {
+                    for (int i = task; i < taskCount - 1; i++) {
+                        tasks[i] = tasks[i + 1];
+                    }
+                    taskCount--;
+                    found = true;
+                    break;
+                }
+
+            }
+        }
+        if (!found) {
+            System.out.println("Invalid choice! Please enter the existing number of the task.");
+        }
+    }
+
     private void increaseSize() {
         Task[] temp = new Task[tasks.length * 2];
 
