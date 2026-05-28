@@ -1,3 +1,7 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+
 public class TaskManager {
 
     private Task[]tasks;
@@ -81,6 +85,40 @@ public class TaskManager {
             System.out.println("Invalid choice! Please enter the existing number of the task.");
         }
     }
+
+    public void saveToFile() {
+        try (FileWriter writer = new FileWriter("tasks.txt")) {
+            for (int i = 0; i < taskCount; i++) {
+                writer.write(tasks[i].getTitle() + "," + tasks[i].isDone() + "\n");
+            }
+        } catch (Exception e) {
+            System.out.println("Error saving tasks!");
+        }
+    }
+
+    public void loadFromFile() {
+        try (Scanner fileScanner = new Scanner(new File("tasks.txt"))) {
+
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                String[] parts = line.split(",");
+                if (taskCount == tasks.length) {
+                    increaseSize();
+                } else {
+                    tasks[taskCount] = new Task(nextId, parts[0]);
+                    if (Boolean.parseBoolean(parts[1])) {
+                        tasks[taskCount].markAsDone();
+                    }
+                    taskCount++;
+                    nextId++;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("No saved tasks found.");
+        }
+    }
+
+
 
     private void increaseSize() {
         Task[] temp = new Task[tasks.length * 2];
