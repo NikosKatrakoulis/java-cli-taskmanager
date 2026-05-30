@@ -10,16 +10,20 @@ This is a learning project — built from scratch as part of my Java journey.
 - Add new tasks
 - View all tasks with status (✓ / ✗)
 - Mark tasks as completed
-- Delete tasks
+- Delete tasks with auto re-numbering
+- Persistent storage — tasks saved to `tasks.txt`
 - Input validation and error handling
+- Dynamic array resizing
 
 ---
 
 ## 🛠️ Built With
 
 - Java
+- OOP (Task, TaskManager classes)
 - Scanner (user input)
 - Arrays (data storage)
+- File I/O (persistence)
 
 ---
 
@@ -63,8 +67,8 @@ Enter the number of the action you want and follow the instructions.
 
 ## ⚠️ Limitations
 
-- Tasks are stored in memory only — they are lost when the program closes
-- Maximum 10 tasks at a time
+- Tasks are stored in `tasks.txt` — they persist between sessions
+- Dynamic resizing — no fixed task limit
 
 ---
 
@@ -73,7 +77,7 @@ Enter the number of the action you want and follow the instructions.
 - [x] v0.1 — Static task list με println, variables, String concat
 - [x] v0.2 — Scanner input, if/else menu, array[10], validation
 - [x] v0.3 — switch menu, for-each, save/load .txt (persistence)
-- [ ] v0.4 — Classes (Task, TaskManager), ArrayList, save/load .txt
+- [x] v0.4 — Classes (Task, TaskManager), OOP refactor, save/load .txt
 
 ---
 
